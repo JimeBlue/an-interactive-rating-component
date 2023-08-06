@@ -7,6 +7,7 @@
           v-for="(star, index) in stars"
           :key="index"
           :for="'star_' + index"
+          @mouseover="highlightStar(index)"
         >
           <input
             type="radio"
@@ -18,7 +19,7 @@
           {{ star }}
         </label>
       </div>
-      <button>Submit Rating</button>
+      <button @click="submitRating">Submit Rating</button>
     </div>
     <div v-else>
       <h2>Thank you for your rating!</h2>
@@ -37,6 +38,20 @@ export default {
       submittedRating: 0,
       selectedRating: null,
     };
+  },
+  methods: {
+    highlightStar(index) {
+      this.highlighted = index;
+    },
+    resetHighlightedStar() {
+      this.highlighted = -1;
+    },
+    submitRating() {
+      if (this.selectedRating !== null) {
+        this.submitted = true;
+        this.submittedRating = this.selectedRating;
+      }
+    },
   },
 };
 </script>

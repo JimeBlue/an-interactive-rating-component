@@ -8,6 +8,7 @@
           :key="index"
           :for="'star_' + index"
           @mouseover="highlightStar(index)"
+          :class="{ highlight: index <= highlighted }"
         >
           <input
             type="radio"
@@ -55,3 +56,27 @@ export default {
   },
 };
 </script>
+<style scoped>
+.stars {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.stars label {
+  display: inline-block;
+}
+.star-input {
+  position: absolute;
+  left: -9999px;
+}
+
+.stars label {
+  color: #d3d3d3;
+  transition: color 0.2s;
+  margin-right: 5px;
+}
+.stars label:hover,
+.stars label.highlight {
+  color: #ffdd00;
+}
+</style>
